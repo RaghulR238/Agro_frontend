@@ -1,0 +1,152 @@
+import "./loginpage.css";
+import registerImg from "./images/registerImg2.jpg";
+import {useState} from 'react';
+import axios from 'axios';
+import {useNavigate} from "react-router-dom";
+export default function LoginPage()
+{
+    const[email,setEmail]=useState('');
+    const[password,setPassword]=useState('');
+    const[userType,setUserType]=useState('');
+    const[userName,setUserName]=useState('');
+    const[contactNumber,setContactNumber]=useState('');
+
+    const navigate=useNavigate();
+    
+    
+    async function handleLogin()
+    {
+        try{
+
+            console.log("Trying to login front end");            
+            const data=await axios.post("http://localhost:3001/user/login",{email:email,password:password,userType:userType});
+            console.log(data);
+            sessionStorage.setItem('accessToken', data.data.accessToken);
+            sessionStorage.setItem('user_id', data.data.userDetails._id);
+            sessionStorage.setItem('userName', data.data.userDetails.userName);
+            const retrievedValue = sessionStorage.getItem('accessToken');
+            console.log(retrievedValue); 
+            navigate("/shop");
+        }
+        catch(error)
+        {
+            console.log(error.response.data);
+        }
+    }
+    async function handleRegister()
+    {
+        try{
+
+            console.log("Trying to register");    
+            console.log(password,userName,contactNumber);           
+            const data=await axios.post("http://localhost:3001/user/signUp",{email:email,password:password,userType:userType,contactNumber:contactNumber,userName:userName});
+            console.log(data);
+            sessionStorage.setItem('accessToken', data.data.accessToken);
+            sessionStorage.setItem('user_id', data.data.userDetails._id);
+            const retrievedValue = sessionStorage.getItem('accessToken');
+            console.log(retrievedValue); 
+            navigate("/shop");
+        }
+        catch(error)
+        {
+            console.log(error);
+        }
+    }
+    return(
+        <>
+      <div className="outer">
+        <div className="inner1">
+            <h1 >Login</h1>
+            <div className="innerBox">
+               
+                <label>
+                    Email Address *
+                </label>
+                <br></br>
+                <input type="text" onChange={(e)=>setEmail(e.target.value)}>
+                </input>
+                <br></br>
+                <label>
+                    Password *
+                </label>
+                <br></br>
+                <input type="password" onChange={(e)=>setPassword(e.target.value)}>
+                </input>
+                <br></br>
+                <label>
+                    Type *
+                </label>
+                <br></br>
+                <select onClick={(e)=>setUserType(e.target.value)}>
+                    <option value="farmer">
+                        Farmer
+                    </option>
+                    <option value="customer">
+                        Customer
+                    </option>
+                    <option value="shopIncharge">
+                        Shop Incharge
+                    </option>
+                </select>
+                <br></br>
+                <button className="b1" onClick={handleLogin}>Log In</button>
+            </div>
+        </div>
+        <div className="inner1">
+            <h1 >Register </h1>
+            <div className="innerBox">
+            <label>
+                    UserName *
+                </label>
+                <br></br>
+                <input type="text" onChange={(e)=>setUserName(e.target.value)}>
+                </input>
+                <br></br>
+                <label>
+                    Email Address *
+                </label>
+                <br></br>
+                <input type="text" onChange={(e)=>setEmail(e.target.value)}>
+                </input>
+                <br></br>
+                <label>
+                    Password *
+                </label>
+                <br></br>
+                <input type="password" onChange={(e)=>setPassword(e.target.value)}>
+                </input>
+                <br></br>
+                <br></br>
+                <label>
+                    Type *
+                </label>
+                <br></br>
+                <select onClick={(e)=>setUserType(e.target.value)}>
+                <option value="farmer">
+                       
+                    </option>
+                    <option value="farmer">
+                        Farmer
+                    </option>
+                    <option value="customer">
+                        Customer
+                    </option>
+                    <option value="shopIncharge">
+                        Shop Incharge
+                    </option>
+                </select>
+                <br></br>
+                <label>
+                    Contact Number *
+                </label>
+                <br></br>
+                <input type="text" onChange={(e)=>setContactNumber(e.target.value)}>
+                </input>
+                <br></br>
+                <button className="b1" onClick={handleRegister}>Register</button>
+            </div>
+        </div>
+      </div>
+        </>
+    )
+}
