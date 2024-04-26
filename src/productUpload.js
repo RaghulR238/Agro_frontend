@@ -49,7 +49,7 @@ import { useNavigate } from "react-router-dom";
             console.log(retrievedValue);
             try{
 
-              const data=await axios.post("http://localhost:3001/product/upload",
+              const data=await axios.post("https://agro-backend-xn9u.onrender.com/product/upload",
               {
                 ...productData,
                 image:image

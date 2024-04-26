@@ -31,7 +31,7 @@ export default function Cart()
         try{
             const user_id = sessionStorage.getItem('user_id');
 
-            const cartItems=await axios.get("http://localhost:3001/product/displayCart",
+            const cartItems=await axios.get("https://agro-backend-xn9u.onrender.com/product/displayCart",
             {
             params: {
                 user_id: user_id
@@ -64,7 +64,7 @@ export default function Cart()
         console.log(data._id);
         const retrievedValue = sessionStorage.getItem('accessToken');
 
-        const result = await axios.delete("http://localhost:3001/product/deleteCart", {
+        const result = await axios.delete("https://agro-backend-xn9u.onrender.com/product/deleteCart", {
             headers: {
                 authorization: retrievedValue
             },

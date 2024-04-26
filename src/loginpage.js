@@ -19,7 +19,7 @@ export default function LoginPage()
         try{
 
             console.log("Trying to login front end");            
-            const data=await axios.post("http://localhost:3001/user/login",{email:email,password:password,userType:userType});
+            const data=await axios.post("https://agro-backend-xn9u.onrender.com/user/login",{email:email,password:password,userType:userType});
             console.log(data);
             sessionStorage.setItem('accessToken', data.data.accessToken);
             sessionStorage.setItem('user_id', data.data.userDetails._id);
@@ -41,7 +41,7 @@ export default function LoginPage()
 
             console.log("Trying to register");    
             console.log(password,userName,contactNumber);           
-            const data=await axios.post("http://localhost:3001/user/signUp",{email:email,password:password,userType:userType,contactNumber:contactNumber,userName:userName});
+            const data=await axios.post("https://agro-backend-xn9u.onrender.com/user/signUp",{email:email,password:password,userType:userType,contactNumber:contactNumber,userName:userName});
             console.log(data);
             sessionStorage.setItem('accessToken', data.data.accessToken);
             sessionStorage.setItem('user_id', data.data.userDetails._id);

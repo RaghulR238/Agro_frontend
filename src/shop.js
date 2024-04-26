@@ -24,7 +24,7 @@ export default function Shop()
     
             console.log(retrievedValue);
     try{
-      const data=await axios.get("http://localhost:3001/product/allProducts",{
+      const data=await axios.get("https://agro-backend-xn9u.onrender.com/product/allProducts",{
         headers:{
           authorization:retrievedValue}
       });
@@ -50,7 +50,7 @@ async function handleAddToCart(content)
   console.log(content.productName);
   try{
 
-    const data=await axios.post("http://localhost:3001/product/addToCart",{user_id:_id,image:content.image,productName:content.productName,productprice:content.productprice,productKg:content.productKg},
+    const data=await axios.post("https://agro-backend-xn9u.onrender.com/product/addToCart",{user_id:_id,image:content.image,productName:content.productName,productprice:content.productprice,productKg:content.productKg},
     {
       headers:{
         authorization:retrievedValue}
@@ -73,13 +73,13 @@ async function handleSorting(e)
       if(e=="high")
       {
 
-        data=await axios.get("http://localhost:3001/product/allProductsSortHigh",{
+        data=await axios.get("https://agro-backend-xn9u.onrender.com/product/allProductsSortHigh",{
           headers:{
             authorization:retrievedValue}
         });
       }
       else if(e=="low"){
-        data=await axios.get("http://localhost:3001/product/allProductsSortLow",{
+        data=await axios.get("https://agro-backend-xn9u.onrender.com/product/allProductsSortLow",{
           headers:{
             authorization:retrievedValue}
         });
@@ -98,7 +98,7 @@ async function handleSorting(e)
 async function handleSearch(e)
 {
   const retrievedValue = sessionStorage.getItem('accessToken');
-  const data=await axios.get("http://localhost:3001/product/allProductsSearch",{params:{
+  const data=await axios.get("https://agro-backend-xn9u.onrender.com/product/allProductsSearch",{params:{
     search:e.target.value
   },
     headers:{
