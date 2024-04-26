@@ -1,5 +1,5 @@
 import "./loginpage.css";
-import registerImg from "./images/registerImg2.jpg";
+import wall4 from "./images/wallpaper4.jpg";
 import {useState} from 'react';
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
@@ -24,12 +24,14 @@ export default function LoginPage()
             sessionStorage.setItem('accessToken', data.data.accessToken);
             sessionStorage.setItem('user_id', data.data.userDetails._id);
             sessionStorage.setItem('userName', data.data.userDetails.userName);
+            sessionStorage.setItem('userType', data.data.userDetails.userType);
             const retrievedValue = sessionStorage.getItem('accessToken');
             console.log(retrievedValue); 
             navigate("/shop");
         }
         catch(error)
         {
+            alert(error.response.data);
             console.log(error.response.data);
         }
     }
@@ -49,11 +51,20 @@ export default function LoginPage()
         }
         catch(error)
         {
+            alert(error.response.data);
             console.log(error);
         }
     }
     return(
         <>
+        <div className="image">
+        <img className="registerImg" src={wall4}></img>
+      <div className="myAccount" style={{top:"35%"}}>
+        <h1 >My Account</h1>
+        <span>Login/Sign Up</span>
+        </div>
+      </div>
+
       <div className="outer">
         <div className="inner1">
             <h1 >Login</h1>

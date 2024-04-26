@@ -3,9 +3,11 @@ import Nav from './nav';
 import "./cart.css";
 import axios from 'axios';
 import deleteIcon from "./images/delete.png";
-
+import register from "./images/register.jpg"
+import { useNavigate } from 'react-router-dom';
 export default function Cart() 
 {
+    const navigate=useNavigate();
     const[items,setItems]=useState();
 
     function handleIncrease(index)
@@ -23,16 +25,22 @@ export default function Cart()
         updateItems[index].productKg-=10;
     setItems(updateItems);
     }
+    const retrievedValue = sessionStorage.getItem('accessToken');
     async function fetchCart()
     {
         try{
-            const retrievedValue = sessionStorage.getItem('accessToken');
+            const user_id = sessionStorage.getItem('user_id');
 
             const cartItems=await axios.get("http://localhost:3001/product/displayCart",
             {
+            params: {
+                user_id: user_id
+            }
+            ,
                 headers:{
                   authorization:retrievedValue}
               });
+
               console.log(cartItems.data);
               setItems(cartItems.data);
         }
@@ -42,6 +50,11 @@ export default function Cart()
         }
     }
     useEffect(()=>{
+    if(!retrievedValue)
+    {
+      alert("Login or Register to continue");
+      navigate("/login");
+    }
         fetchCart();
     },[])
 
@@ -71,6 +84,13 @@ export default function Cart()
   return (
     <>
       <Nav/>
+      <div className="image">
+        <img className="registerImg" src={register}></img>
+      <div className="myAccount" style={{top:"35%"}}>
+        <h1>My Cart</h1>
+        <span>Place Order</span>
+        </div>
+      </div>
 
         <div >
             

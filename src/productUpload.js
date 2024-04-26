@@ -1,9 +1,19 @@
-  import React, { useState } from "react";
+  import React, { useEffect, useState } from "react";
   import axios from "axios";
   import Nav from "./nav";
   import "./productUpload.css";
+import { useNavigate } from "react-router-dom";
   export default function ProductUpload() 
   {
+    const retrievedValue = sessionStorage.getItem('accessToken');
+    const navigate=useNavigate();
+    useEffect(()=>{
+      if(!retrievedValue)
+    {
+      alert("Login or Register to continue");
+      navigate("/login");
+    }
+    },[])
     const[file,setFile]=useState();
     const [productData, setProductData] = useState({
       productName: '',

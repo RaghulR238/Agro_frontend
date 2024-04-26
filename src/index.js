@@ -7,12 +7,14 @@ import Shop from './shop';
 import {BrowserRouter,  Route, Routes } from 'react-router-dom'
 import ProductUpload from './productUpload';
 import Cart from './cart';
+import Home from './home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <Routes>
-    <Route exact path="/" element={<App/>}></Route>
+    <Route exact path="/" element={<Home/>}></Route>
+    <Route exact path="/login" element={<App/>}></Route>
     <Route exact path="/shop" element={<Shop/>}></Route> 
     <Route exact path="/productUpload" element={<ProductUpload/>}></Route> 
     <Route exact path="/cart" element={<Cart/>}></Route>   

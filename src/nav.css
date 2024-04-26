@@ -4,7 +4,25 @@
   justify-content: space-between;
   text-align: center;
   padding: 20px;
+  
 }
+.landing
+{
+  /* position: relative; */
+}
+
+
+.logout
+{
+  position: absolute;
+  z-index: 1;
+  width: 8%;
+  display: block;
+  top:80px;
+  right: 12px;  
+}
+
+
 .register
 {
   border: 3px solid #f8c45c;

@@ -1,0 +1,19 @@
+.registerImg1 {
+  
+    width: 100%;
+    height: 450px;
+    filter: brightness(50%) contrast(100%); 
+  }
+  
+  .image1
+  {
+    position: relative;
+    width: 100%;
+  }
+  .myAccount1{
+    position: absolute;
+    top:5%;
+    width: 100%;
+    text-align: center;
+    color: white;
+  }
