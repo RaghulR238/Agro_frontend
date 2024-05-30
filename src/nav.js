@@ -27,6 +27,17 @@ export default function Nav() {
       alert("You must be farmer to Upload Product");
     }
   }
+  function handlePlant()
+  {
+    console.log(type);
+    if(type=="shopIncharge")
+    {
+      navigate("/plantUpload");
+    }
+    else{
+      alert("You must be Shop Incharge to Upload Product");
+    }
+  }
   return (
     <div className="landing" >
       <div className="navBar" >
@@ -36,8 +47,9 @@ export default function Nav() {
         <div className="navCenter">
          <h1 onClick={()=>navigate("/")}>Home </h1>
          <h1 onClick={()=>navigate("/shop")}>Shop</h1>
-          <h1 >About</h1>
-          <h1 onClick={handleUpload}>UploadProducts</h1>
+          <h1 onClick={()=>navigate("/about")}>About</h1>
+          <h1 onClick={handleUpload}>Products</h1>
+          <h1 onClick={handlePlant}>Plants</h1>
           <img onClick={()=>navigate("/cart")} src={cartIcon} style={{width:'20px',height:"20px",marginTop:"18px",borderRadius:'50%',padding:"15px",backgroundColor:"#cfe6ff"}}></img>
         </div>
       

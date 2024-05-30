@@ -3,7 +3,8 @@
   import Nav from "./nav";
   import "./productUpload.css";
 import { useNavigate } from "react-router-dom";
-  export default function ProductUpload() 
+
+  export default function PlantUpload() 
   {
     const retrievedValue = sessionStorage.getItem('accessToken');
     const navigate=useNavigate();
@@ -16,13 +17,13 @@ import { useNavigate } from "react-router-dom";
     },[])
     const[file,setFile]=useState();
     const [productData, setProductData] = useState({
-      productName: '',
-      productKg: '',
-      productprice: '',
+      plantName: '',
+      plantKg: '',
+      plantPrice: '',
       delivery: false,
       deliveryPlace: '',
-      productLocation: '',
-      details: ''
+      location: '',
+      plantType: ''
     });
 
     const cloudUpload=async(file)=>{
@@ -49,7 +50,7 @@ import { useNavigate } from "react-router-dom";
             console.log(retrievedValue);
             try{
 
-              const data=await axios.post("http://localhost:3001/product/upload",
+              const data=await axios.post("http://localhost:3001/plant/upload",
               {
                 ...productData,
                 image:image
@@ -65,37 +66,38 @@ import { useNavigate } from "react-router-dom";
               console.log(error);
             }
     }
+    
     return (
       <>
         <Nav />
         <h1 style={{ color: "#50a464", textAlign: "center", fontWeight: "bold" }}>
-          Upload Porduct
+          Upload Plant
         </h1>
         <div className="outer">
           <div className="inner1">
             <div className="innerBox">
-              <label>Product Name</label>
+              <label>Plant Name</label>
               <br></br>
               <input type="text" onChange={(e)=>setProductData(prev=>({...prev,productName:e.target.value}))}></input>
 
               <br></br>
-              <label>Product Image</label>
+              <label>Plant Image</label>
               <br></br>
               <input type="file" onChange={(e)=>setFile(e.target.files[0])}></input>
               <br></br>
-              <label>Product KG</label>
+              <label>Plant KG</label>
               <br></br>
               <input type="text" onChange={(e)=>setProductData(prev=>({...prev,productKg:e.target.value}))}></input>
               <br></br>
-              <label>Product Price</label>
+              <label>Plant Price</label>
               <br></br>
               <input type="text" onChange={(e)=>setProductData(prev=>({...prev,productprice:e.target.value}))}></input>
               <br></br>
-              <label>Product Details</label>
+              <label>Plant Type</label>
               <br></br>
               <input type="text" onChange={(e)=>setProductData(prev=>({...prev,details:e.target.value}))}></input>
               <br></br>
-              <label>Product Location</label>
+              <label>Plant Location</label>
               <br></br>
               <input type="text" onChange={(e)=>setProductData(prev=>({...prev,productLocation:e.target.value}))}></input>
               <br></br>
@@ -127,7 +129,7 @@ import { useNavigate } from "react-router-dom";
               <br></br>
               <input type="text" onChange={(e)=>setProductData(prev=>({...prev,deliveryPlace:e.target.value}))}></input>
               <br></br>
-              <button className="b1" onClick={handleUpload}>Upload Product</button>
+              <button className="b1" onClick={handleUpload}>Upload Plant</button>
             </div>
           </div>
         </div>
